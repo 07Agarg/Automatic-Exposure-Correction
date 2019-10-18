@@ -1,9 +1,10 @@
 clc;
 clear all;
 close all;
-img_name = 'scene00201.png';
-img_index = 00001;
-im = imread(img_name);
+
+D = '../Dataset/Part A/';
+S = fullfile(pwd, D, 'IMG_9.jpg');
+im = imread(S);
 figure; imshow(im)
 
 %gray_i = grb2gray(im);
@@ -27,9 +28,3 @@ J_250 = lab2rgb(LAB);
 figure;imshow(J_250)
 %imshowpair(im,J,'montage')
 title('Contrast Enhanced Image-(250 50)')
-
-brisque_original = brisque(im)
-brisque_gamma = brisque(im_gamma)
-%brisque_hist = brisque(hist_eq)
-brisque_adapthist_720 = brisque(J_720)
-brisque_adapthist_250 = brisque(J_250)

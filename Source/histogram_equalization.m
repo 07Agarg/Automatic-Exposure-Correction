@@ -1,9 +1,10 @@
 clc;
 clear all;
 close all;
-img_name = 'scene00201.png';
-img_index = 00001;
-im = imread(img_name);
+
+D = '../Dataset/Part A/';
+S = fullfile(pwd, D, 'IMG_9.jpg');
+im = imread(S);
 figure; imshow(im)
 
 hist_eq = histeq(im);
