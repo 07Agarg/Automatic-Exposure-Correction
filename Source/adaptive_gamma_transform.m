@@ -4,19 +4,23 @@
 clc;
 clear all;
 close all;
-
-x=double(imread('kodim20.png')); % input image
+D = '../Dataset/Part A/';
+S = fullfile(pwd, D, 'IMG_9.jpg')
+x=double(imread(S)); % input image
 xr = x(:,:,1);
 xg = x(:,:,2);
 xb = x(:,:,3);
-imshow(uint8(x))
+imshow(uint8(x)), title('Original Image');
 
 yr = adapt_gamma_transform(xr); 
 yg = adapt_gamma_transform(xg);
 yb = adapt_gamma_transform(xb);
 
 y = cat(3,uint8(yr),uint8(yg),uint8(yb));
-figure; imshow(uint8(y))
+figure; imshow(uint8(y)), title('Adaptive Gamma Transformed Image')
+
+brisque_originalimg = brisque(x);
+brisque_yfinal = brisque(y);
 
 function y = adapt_gamma_transform(x)
     l_max = 255;

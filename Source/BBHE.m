@@ -1,3 +1,21 @@
+clc;
+close all;
+clear all;
+D = '../Dataset/Part B/';
+S = fullfile(pwd, D, 'IMG_1.png')
+a = imread(S);
+x_red = a(:,:,1);
+x_green = a(:,:,2);
+x_blue = a(:,:,3);
+
+y_red = uint8(BBHE(x_red));
+y_green = uint8(BBHE(x_green));
+y_blue = uint8(BBHE(x_blue));
+
+y_final = cat(3, y_red, y_green, y_blue);
+figure,imshow(a), title('Original Image');
+figure, imshow(y_final), title('BBHE Colored Image');
+
 function equalized_img = BBHE(x)
 sz = size(x);
 %figure; imshow(x)
@@ -45,4 +63,4 @@ for i =1:sz(1)
        end
   end
 end
-%return equalized_img
+end
