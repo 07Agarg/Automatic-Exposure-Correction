@@ -32,7 +32,35 @@ alpha_bright = 0.25;
 function y = ce_dimmed(x)
     
     alpha = alpha_dimmed;
+    l_max = 255;
+    [M,N]=size(x); % get size of image
+    total_pixels = M*N;
     
+    x = 255 - x;
+    
+    for i=0:255
+       PDF1(i+1)=sum(sum(x==i))/total_pixels; %hist of input image
+    end
+
+    p_max = max(PDF1);
+    p_min = min(PDF1);
+    
+    %weighting dist fn to smooth primary hist
+    for i=0:255
+        PDF2(i+1) = p_max * (((PDF1(i+1)-p_min)/(p_max-p_min))^alpha);
+    end
+
+    %normalize prob
+    PDF3 = PDF2/sum(PDF2);
+    
+    PDF = PDF3;
+    y=x; 
+    for i=0:255
+       I = find(x==i); %index of pixels in input image with value ‘i’
+       CDF = sum(PDF(1:i));
+       gamma = max(trunc, 1 - CDF);
+       y(I) = round(l_max*((i/l_max)^gamma)); 
+    end
     
 end
 
