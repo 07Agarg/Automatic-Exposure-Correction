@@ -21,9 +21,6 @@ yb = adapt_gamma_transform(xb);
 y = cat(3,uint8(yr),uint8(yg),uint8(yb));
 figure; imshow(uint8(y)), title('Adaptive Gamma Transformed Image')
 
-brisque_originalimg = brisque(x);
-brisque_yfinal = brisque(y);
-
 function y = adapt_gamma_transform(x)
     l_max = 255;
     [M,N]=size(x); % get size of image

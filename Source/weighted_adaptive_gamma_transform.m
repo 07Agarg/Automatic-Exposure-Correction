@@ -25,9 +25,6 @@ yb = weighted_adapt_gamma_transform(xb, alpha);
 y = cat(3,uint8(yr),uint8(yg),uint8(yb));
 figure; imshow(uint8(y)), title('Weighted Adaptive Gamma Transformed Image');
 
-brisque_originalimg = brisque(uint8(x));
-brisque_yfinal = brisque(uint8(y));
-
 function y = weighted_adapt_gamma_transform(x, alpha)
     l_max = 255;
     [M,N]=size(x); % get size of image
