@@ -4,8 +4,10 @@
 clc;
 clear all;
 close all;
+
 D = '../Dataset/Part A/';
 S = fullfile(pwd, D, 'IMG_9.jpg')
+
 x=double(imread(S)); % input image
 xr = x(:,:,1);
 xg = x(:,:,2);
@@ -24,16 +26,17 @@ brisque_yfinal = brisque(y);
 
 function y = adapt_gamma_transform(x)
     l_max = 255;
-    %[M,N]=size(x); % get size of image
+    [M,N]=size(x); % get size of image
+    total_pixels = M*N;
+    
     for i=0:255
-       h(i+1)=sum(sum(x==i)); %hist of input image
+       PDF(i+1)=sum(sum(x==i))/total_pixels; %hist of input image
     end
 
     y=x; 
-    s=sum(h); % Total number of pixels
     for i=0:255
        I = find(x==i); %index of pixels in input image with value ‘i’
-       CDF = sum(h(1:i))/s;
+       CDF = sum(PDF(1:i));
        gamma = 1 - CDF;
        y(I) = round(l_max*((i/l_max)^gamma)); 
     end
