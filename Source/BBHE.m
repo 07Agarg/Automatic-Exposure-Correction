@@ -33,8 +33,7 @@ for i = 1:sz(1)
        end
    end
 end
-disp(h_l);
-disp(h_u);
+
 nh_l = zeros(256,1);
 nh_u = zeros(256,1);
                                                                             % NORMALIZED HISTOGRAM OR PDF
