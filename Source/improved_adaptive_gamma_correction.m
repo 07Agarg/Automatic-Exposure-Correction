@@ -2,9 +2,10 @@
 %source: https://arxiv.org/ftp/arxiv/papers/1709/1709.04427.pdf
 
 clc;
+clear;
 close all;
 
-D = '../Dataset/Part A/';
+D = '../Dataset/Part B/';
 S = fullfile(pwd, D, 'IMG_1.png');
 
 x=double(imread(S)); % input image
@@ -22,14 +23,16 @@ y = cat(3,uint8(yr),uint8(yg),uint8(yb));
 figure; imshow(uint8(y)), title('Improved Gamma Correction Transformed Image');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% paper parameters
-T = 112;           % T is appropriate to be set as about the half of maximum pixel intensity, i.e., 128 for 8-bit images.
-thresh = 0.3;      % threshold used for distinguishing brightness-distorted images from normal ones. set experimentally in consideration of the trade-off between enhancement quality and technical applicability.
-trunc = 0.5;
-alpha_dimmed = 0.75;
-alpha_bright = 0.25;
+global T;
+global thresh;
+global trunc;
+global alpha_dimmed;
+global alpha_bright;
 
 function y = ce_dimmed(x)
+    
+    global trunc;
+    global alpha_dimmed;
     
     alpha = alpha_dimmed;
     l_max = 255;
@@ -66,6 +69,8 @@ end
 
 function y = ce_bright(x)
 
+    global alpha_bright;
+    
     alpha = alpha_bright;
     l_max = 255;
     [M,N]=size(x); % get size of image
@@ -105,18 +110,37 @@ end
 % The images with normal illuminance threshold, t <= thresh are found to be unfit for AGC-based enhancement 
 % thus, not addressed by the following techniques. 
 function y = improved_gamma_transform(x)
+    
+    global T;
+    global thresh;
+    global trunc;
+    global alpha_dimmed;
+    global alpha_bright;
+
+    % paper parameters
+    %T = 112;           % T is appropriate to be set as about the half of maximum pixel intensity, i.e., 128 for 8-bit images.
+    T = 128;
+    thresh = 0.3;      % threshold used for distinguishing brightness-distorted images from normal ones. set experimentally in consideration of the trade-off between enhancement quality and technical applicability.
+    trunc = 0.5;
+    alpha_dimmed = 0.75;
+    alpha_bright = 0.25;
+    
     [M,N]=size(x); % get size of image
     total_pixels = M*N;
     
     m = sum(sum(x))/total_pixels;    
-    t = int((m - T)/T);
+    t = int8((m - T)/T);
+    y = ce_bright(x);
     
-    if t < -thresh
-        y = ce_dimmed(x); 
-    elseif t > thresh
-        y = ce_bright(x);
-    else
-        y = -1;
-    end
+%     if t < -thresh
+%         "dimmed"
+%         y = ce_dimmed(x); 
+%     elseif t > thresh
+%         "bright"
+%         y = ce_bright(x);
+%     else
+%         "none"
+%         y = -1;
+%     end
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
