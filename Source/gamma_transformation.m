@@ -17,7 +17,8 @@ S = fullfile(pwd, D, 'IMG_2.png');
 % S = fullfile(pwd, D, 'IMG_8.png');
 % S = fullfile(pwd, D, 'IMG_9.png');
 
-x=double(imread(S)); % input image
+im = imread(S); % input image
+x  = double(im); 
 xr = x(:,:,1);
 xg = x(:,:,2);
 xb = x(:,:,3);
@@ -31,13 +32,13 @@ yb = adapt_gamma_transform(xb, gamma);
 y = cat(3,uint8(yr),uint8(yg),uint8(yb));
 % figure; imshow(uint8(y)), title('Adaptive Gamma Transformed Image')
 
-brisque_orig_img = round(brisque(x), 4);
+brisque_orig_img = round(brisque(im), 4);
 brisque_adaptgamma = round(brisque(y), 4);
 
-niqe_orig_img = round(niqe(x), 4);
+niqe_orig_img = round(niqe(im), 4);
 niqe_adaptgamma = round(niqe(y), 4);
 
-piqe_orig_img = round(piqe(x), 4);
+piqe_orig_img = round(piqe(im), 4);
 piqe_adaptgamma = round(piqe(y), 4);
 
 
