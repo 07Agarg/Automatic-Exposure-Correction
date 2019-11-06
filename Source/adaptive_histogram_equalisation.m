@@ -7,8 +7,8 @@ close all;
 
 D = '../Dataset/Part A/';
 %D = '../Dataset/Part B/';
-S = fullfile(pwd, D, 'IMG_1.png');
-% S = fullfile(pwd, D, 'IMG_2.png');
+% S = fullfile(pwd, D, 'IMG_1.png');
+S = fullfile(pwd, D, 'IMG_2.png');
 % S = fullfile(pwd, D, 'IMG_3.png');
 % S = fullfile(pwd, D, 'IMG_4.png');
 % S = fullfile(pwd, D, 'IMG_5.png');
@@ -23,21 +23,23 @@ L = LAB(:,:,1)/100;
 L = adapthisteq(L,'NumTiles',[720 50],'ClipLimit',0.005);
 LAB(:,:,1) = L*100;
 J_720 = lab2rgb(LAB);
-figure;imshow(J_720)
-title('Contrast Enhanced Image-(720 50)')
+% figure;imshow(J_720)
+% title('Contrast Enhanced Image-(720 50)')
 
-LAB = rgb2lab(im);
-L = LAB(:,:,1)/100;
-L = adapthisteq(L,'NumTiles',[250 50],'ClipLimit',0.005);
-LAB(:,:,1) = L*100;
-J_250 = lab2rgb(LAB);
-figure;imshow(J_250)
-%imshowpair(im,J,'montage')
-title('Contrast Enhanced Image-(250 50)')
+% LAB = rgb2lab(im);
+% L = LAB(:,:,1)/100;
+% L = adapthisteq(L,'NumTiles',[250 50],'ClipLimit',0.005);
+% LAB(:,:,1) = L*100;
+% J_250 = lab2rgb(LAB);
+% figure;imshow(J_250)
+% imshowpair(im,J,'montage')
+% title('Contrast Enhanced Image-(250 50)')
 
+brisque_orig_img = round(brisque(im), 4);
+brisque_adapthist = round(brisque(J_720), 4);
 
-brisque_original = brisque(im)
-brisque_hist = brisque(hist_eq)
-brisque_adapthist_720 = brisque(J_720)
-brisque_adapthist_250 = brisque(J_250)
+niqe_orig_img = round(niqe(im), 4);
+niqe_adapthist = round(niqe(J_720), 4);
 
+piqe_orig_img = round(piqe(im), 4);
+piqe_adapthist = round(piqe(J_720), 4);

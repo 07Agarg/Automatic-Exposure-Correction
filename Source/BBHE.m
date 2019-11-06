@@ -1,11 +1,10 @@
 clc;
 close all;
 clear all;
-% D = '../Dataset/Part B/';
-D = '../Dataset/Part A/';
-% D = '../Dataset/Part B/';
-S = fullfile(pwd, D, 'IMG_1.png');
-% S = fullfile(pwd, D, 'IMG_2.png');
+% D = '../Dataset/Part A/';
+D = '../Dataset/Part B/';
+% S = fullfile(pwd, D, 'IMG_1.png');
+S = fullfile(pwd, D, 'IMG_2.png');
 % S = fullfile(pwd, D, 'IMG_3.png');
 % S = fullfile(pwd, D, 'IMG_4.png');
 % S = fullfile(pwd, D, 'IMG_5.png');
@@ -27,14 +26,14 @@ bbhe_im = cat(3, y_red, y_green, y_blue);
 % figure,imshow(im), title('Original Image');
 % figure, imshow(bbhe_im), title('BBHE Colored Image');
 
-brisque_orig_img = brisque(im);
-brisque_bbhe = brisque(bbhe_im);
+brisque_orig_img = round(brisque(im), 4);
+brisque_bbhe = round(brisque(bbhe_im), 4);
 
-niqe_orig_img = niqe(im);
-niqe_bbhe = niqe(bbhe_im);
+niqe_orig_img = round(niqe(im), 4);
+niqe_bbhe = round(niqe(bbhe_im), 4);
 
-piqe_orig_img = piqe(im);
-piqe_bbhe = piqe(bbhe_im);
+piqe_orig_img = round(piqe(im), 4);
+piqe_bbhe = round(piqe(bbhe_im), 4);
 
 function equalized_img = BBHE(x)
 sz = size(x);
