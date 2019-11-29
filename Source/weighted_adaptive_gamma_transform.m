@@ -8,22 +8,45 @@ clc;
 clear all;
 close all;
 
-D = '../Dataset/Part A/';
+% D = '../Dataset/Part A/';
+D = '../Dataset/Part B/';
 S = fullfile(pwd, D, 'IMG_1.png');
+% S = fullfile(pwd, D, 'IMG_2.png');
+% S = fullfile(pwd, D, 'IMG_3.png');
+% S = fullfile(pwd, D, 'IMG_4.png');
+% S = fullfile(pwd, D, 'IMG_5.png');
+% S = fullfile(pwd, D, 'IMG_6.png');
+% S = fullfile(pwd, D, 'IMG_7.png');
+% S = fullfile(pwd, D, 'IMG_8.png');
+% S = fullfile(pwd, D, 'IMG_9.png');
 
-x=double(imread(S)); % input image
-xr = x(:,:,1);
-xg = x(:,:,2);
-xb = x(:,:,3);
-imshow(uint8(x)), title('Original Image');
+im=imread(S); % input image
+hsv_x = rgb2hsv(im);
+% xr = x(:,:,1);
+% xg = x(:,:,2);
+% xb = x(:,:,3);
+figure; imshow(im), title('Original Image');
 
-alpha = 2;
-yr = weighted_adapt_gamma_transform(xr, alpha); 
-yg = weighted_adapt_gamma_transform(xg, alpha);
-yb = weighted_adapt_gamma_transform(xb, alpha);
+alpha = 0.5;
+hsv_y = weighted_adapt_gamma_transform(uint8(hsv_x(:, :, 3)*255), alpha); 
+i_new = double(hsv_y)/255.0;
+hsv_x(:,:,3) = i_new;
+y = hsv2rgb(hsv_x);
+% yr = weighted_adapt_gamma_transform(xr, alpha); 
+% yg = weighted_adapt_gamma_transform(xg, alpha);
+% yb = weighted_adapt_gamma_transform(xb, alpha);
+% 
+% y = uint8(cat(3,uint8(yr),uint8(yg),uint8(yb)));
+figure; imshow(y), title('Weighted Adaptive Gamma Transformed Image');
 
-y = cat(3,uint8(yr),uint8(yg),uint8(yb));
-figure; imshow(uint8(y)), title('Weighted Adaptive Gamma Transformed Image');
+brisque_orig_img = round(brisque(im), 4);
+brisque_wadaptgamma = round(brisque(y), 4);
+% 
+% niqe_orig_img = round(niqe(im), 4);
+% niqe_wadaptgamma = round(niqe(y), 4);
+% 
+% piqe_orig_img = round(piqe(im), 4);
+% piqe_wadaptgamma = round(piqe(y), 4);
 
 function y = weighted_adapt_gamma_transform(x, alpha)
     l_max = 255;

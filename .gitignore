@@ -1,1 +1,15 @@
 .asv
+Dataset/download.png
+Dataset/lena512.bmp
+Mid Term Eval Report.pdf
+Result/B_1_Original.png
+Result/B_1_Weighted_RGB.png
+Source/adaptive_nonlinear_stretching.asv
+Source/test.m
+Source/temp1.m
+Source/temp.m
+Source/recursive.m
+Source/otsu_model.m
+Source/histogram_equalization.asv
+Source/histogram_equalization(withoutMATLAB).m
+Ashima-Surbhi.pdf

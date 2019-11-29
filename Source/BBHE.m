@@ -1,10 +1,11 @@
-clc;
+%%%%%%%%%%%%%%%% Bi-Histogram based Histogram Equalisation (BBHE)  %%%%%%%%%%%%%%%%%%%%%
 close all;
 clear all;
+clc;
 % D = '../Dataset/Part A/';
 D = '../Dataset/Part B/';
-% S = fullfile(pwd, D, 'IMG_1.png');
-S = fullfile(pwd, D, 'IMG_2.png');
+S = fullfile(pwd, D, 'IMG_1.png');
+% S = fullfile(pwd, D, 'IMG_2.png');
 % S = fullfile(pwd, D, 'IMG_3.png');
 % S = fullfile(pwd, D, 'IMG_4.png');
 % S = fullfile(pwd, D, 'IMG_5.png');
@@ -14,27 +15,36 @@ S = fullfile(pwd, D, 'IMG_2.png');
 % S = fullfile(pwd, D, 'IMG_9.png');
 % S = fullfile(pwd, D, 'IMG_10.png');
 im = imread(S);
-x_red = im(:,:,1);
-x_green = im(:,:,2);
-x_blue = im(:,:,3);
+hsv_x = rgb2hsv(im);
+% x_red = im(:,:,1);
+% x_green = im(:,:,2);
+% x_blue = im(:,:,3);
+% 
+% y_red = uint8(BBHE(x_red));
+% y_green = uint8(BBHE(x_green));
+% y_blue = uint8(BBHE(x_blue));
 
-y_red = uint8(BBHE(x_red));
-y_green = uint8(BBHE(x_green));
-y_blue = uint8(BBHE(x_blue));
+% bbhe_im = cat(3, y_red, y_green, y_blue);
+hsv_y = BBHE(uint8(hsv_x(:,:,3)*255));
+i_new = double(hsv_y)/255.0;
+hsv_x(:,:,3) = i_new;
+bbhe_im = hsv2rgb(hsv_x);
 
-bbhe_im = cat(3, y_red, y_green, y_blue);
-% figure,imshow(im), title('Original Image');
-% figure, imshow(bbhe_im), title('BBHE Colored Image');
+figure, imshow(im), title('Original Image');
+figure, imshow(bbhe_im), title('BBHE Colored Image');
 
 brisque_orig_img = round(brisque(im), 4);
 brisque_bbhe = round(brisque(bbhe_im), 4);
 
-niqe_orig_img = round(niqe(im), 4);
-niqe_bbhe = round(niqe(bbhe_im), 4);
+% 
+% niqe_orig_img = round(niqe(im), 4);
+% niqe_bbhe = round(niqe(bbhe_im), 4);
+% 
+% piqe_orig_img = round(piqe(im), 4);
+% piqe_bbhe = round(piqe(bbhe_im), 4);
 
-piqe_orig_img = round(piqe(im), 4);
-piqe_bbhe = round(piqe(bbhe_im), 4);
-
+% figure; imhist(im)
+% figure; imhist(bbhe_im)
 function equalized_img = BBHE(x)
 sz = size(x);
 %figure; imshow(x)
