@@ -4,9 +4,9 @@
 clc;
 clear;
 close all;
-D = '../Dataset/Part A/';
-% D = '../Dataset/Part B/';
-S = fullfile(pwd, D, 'IMG_1.png');
+% D = '../Dataset/Part A/';
+D = '../Dataset/Part B/';
+S = fullfile(pwd, D, 'IMG_2.png');
 
 im = imread(S); % input image
 %HSV to RGB 
@@ -138,19 +138,18 @@ function y = improved_gamma_transform(x)
     [M,N]=size(x); % get size of image
     total_pixels = M*N;
     
-    m = sum(sum(x))/total_pixels    
-    t = int8((m - T)/T)
-    y = ce_dimmed(x);
-
-%     if t < -thresh
-%         "image is dimmed; call function dimmed"
-%         y = ce_dimmed(x); 
-%     elseif t > thresh
-%         "image is bright; call function bright"
-%         y = ce_bright(x);
-%     else
-%         "none"
-%         y = -1;
-%     end
+    m = sum(sum(x))/total_pixels;  
+    t = (m - T)/T;
+    
+    if t < -thresh
+        "image is dimmed; call function dimmed"
+        y = ce_dimmed(x); 
+    elseif t > thresh
+        "image is bright; call function bright"
+        y = ce_bright(x);
+    else
+        "no change"
+        y = x;
+    end
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
