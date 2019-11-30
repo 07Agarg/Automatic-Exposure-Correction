@@ -40,6 +40,7 @@ global trunc;
 global alpha_dimmed;
 global alpha_bright;
 
+% CDF-truncated AGC Algorithm
 function y = ce_dimmed(x)
     
     global trunc;
@@ -49,9 +50,7 @@ function y = ce_dimmed(x)
     l_max = 255;
     [M,N]=size(x); % get size of image
     total_pixels = M*N;
-    
-    x = 255 - x;
-    
+       
     for i=0:255
        PDF1(i+1)=sum(sum(x==i))/total_pixels; %hist of input image
     end
@@ -78,6 +77,7 @@ function y = ce_dimmed(x)
     
 end
 
+% Negative-image-based AGC Algorithm
 function y = ce_bright(x)
 
     global alpha_bright;
@@ -114,7 +114,6 @@ function y = ce_bright(x)
     end
     
     y = round(255 - y);
-
 end
 
 % The input image is judged as dimmed if t < -thresh and bright if t > thresh
@@ -144,10 +143,10 @@ function y = improved_gamma_transform(x)
     y = ce_dimmed(x);
 
 %     if t < -thresh
-%         "dimmed"
+%         "image is dimmed; call function dimmed"
 %         y = ce_dimmed(x); 
 %     elseif t > thresh
-%         "bright"
+%         "image is bright; call function bright"
 %         y = ce_bright(x);
 %     else
 %         "none"
