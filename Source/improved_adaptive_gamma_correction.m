@@ -4,23 +4,34 @@
 clc;
 clear;
 close all;
-
-D = '../Dataset/Part B/';
+D = '../Dataset/Part A/';
+% D = '../Dataset/Part B/';
 S = fullfile(pwd, D, 'IMG_1.png');
 
-x=double(imread(S)); % input image
-xr = x(:,:,1);
-xg = x(:,:,2);
-xb = x(:,:,3);
+im = imread(S); % input image
+%HSV to RGB 
+hsv_x = rgb2hsv(im);
+i = uint8(hsv_x(:,:,3) * 255);
 
-imshow(uint8(x)), title('Original Image');
+hsv_y = improved_gamma_transform(i);
 
-yr = improved_gamma_transform(xr); 
-yg = improved_gamma_transform(xg);
-yb = improved_gamma_transform(xb);
+i_new = double(hsv_y)/255.0;
+hsv_x(:,:,3) = i_new;
+y =  hsv2rgb(hsv_x);
 
-y = cat(3,uint8(yr),uint8(yg),uint8(yb));
-figure; imshow(uint8(y)), title('Improved Gamma Correction Transformed Image');
+% xr = x(:,:,1);
+% xg = x(:,:,2);
+% xb = x(:,:,3);
+% 
+% imshow(uint8(x)), title('Original Image');
+% 
+% yr = improved_gamma_transform(xr); 
+% yg = improved_gamma_transform(xg);
+% yb = improved_gamma_transform(xb);
+% 
+% y = cat(3,uint8(yr),uint8(yg),uint8(yb));
+figure; imshow(im), title('Original Image');
+figure; imshow(y), title('Improved Gamma Correction Transformed Image');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 global T;
@@ -106,7 +117,7 @@ function y = ce_bright(x)
 
 end
 
-%The input image is judged as dimmed if t < -thresh and bright if t > thresh
+% The input image is judged as dimmed if t < -thresh and bright if t > thresh
 % The images with normal illuminance threshold, t <= thresh are found to be unfit for AGC-based enhancement 
 % thus, not addressed by the following techniques. 
 function y = improved_gamma_transform(x)
@@ -128,10 +139,10 @@ function y = improved_gamma_transform(x)
     [M,N]=size(x); % get size of image
     total_pixels = M*N;
     
-    m = sum(sum(x))/total_pixels;    
-    t = int8((m - T)/T);
-    y = ce_bright(x);
-    
+    m = sum(sum(x))/total_pixels    
+    t = int8((m - T)/T)
+    y = ce_dimmed(x);
+
 %     if t < -thresh
 %         "dimmed"
 %         y = ce_dimmed(x); 
