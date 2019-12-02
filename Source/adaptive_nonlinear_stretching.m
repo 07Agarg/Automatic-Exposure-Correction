@@ -4,7 +4,7 @@ clc
 %%================================================================================================
 D = '../Dataset/Part A/';
 % D = '../Dataset/Part B/';
-S = fullfile(pwd, D, 'IMG_1.png');
+S = fullfile(pwd, D, 'IMG_6.png');
 im = imread(S); % Read the Image
 hsv_x = rgb2hsv(im);
 
@@ -21,6 +21,9 @@ figure; imshow(y), title('Adaptive Non Linear Stretched Image')
 
 brisque_orig_img = round(brisque(im), 4);
 brisque_adaptnonlinear = round(brisque(y), 4);
+
+niqe_orig_img = round(niqe(im), 4);
+niqe_adaptnonlinear = round(niqe(y), 4);
 
 function threshold = otsu_threshold(I)
     [counts,x] = imhist(I);
@@ -72,7 +75,7 @@ function y = adapt_nonlinear_stretch(x)
     xmin = double(min(x(:)));
     xmax = double(max(x(:)));
     
-    mu = 0.5;  %%%% Parameter lie between [0, 1]
+    mu = 0.2;  %%%% Parameter lie between [0, 1]
     %mu = mean(x(:));
     
     k_low = (1 - mu)*b;

@@ -10,8 +10,8 @@ close all;
 
 % D = '../Dataset/Part A/';
 D = '../Dataset/Part B/';
-S = fullfile(pwd, D, 'IMG_1.png');
-% S = fullfile(pwd, D, 'IMG_2.png');
+% S = fullfile(pwd, D, 'IMG_10.png');
+S = fullfile(pwd, D, 'IMG_2.png');
 % S = fullfile(pwd, D, 'IMG_3.png');
 % S = fullfile(pwd, D, 'IMG_4.png');
 % S = fullfile(pwd, D, 'IMG_5.png');
@@ -25,9 +25,8 @@ hsv_x = rgb2hsv(im);
 % xr = x(:,:,1);
 % xg = x(:,:,2);
 % xb = x(:,:,3);
-figure; imshow(im), title('Original Image');
 
-alpha = 0.5;
+alpha = 0.2;
 hsv_y = weighted_adapt_gamma_transform(uint8(hsv_x(:, :, 3)*255), alpha); 
 i_new = double(hsv_y)/255.0;
 hsv_x(:,:,3) = i_new;
@@ -37,14 +36,15 @@ y = hsv2rgb(hsv_x);
 % yb = weighted_adapt_gamma_transform(xb, alpha);
 % 
 % y = uint8(cat(3,uint8(yr),uint8(yg),uint8(yb)));
+figure; imshow(im), title('Original Image');
 figure; imshow(y), title('Weighted Adaptive Gamma Transformed Image');
 
 brisque_orig_img = round(brisque(im), 4);
 brisque_wadaptgamma = round(brisque(y), 4);
-% 
-% niqe_orig_img = round(niqe(im), 4);
-% niqe_wadaptgamma = round(niqe(y), 4);
-% 
+
+niqe_orig_img = round(niqe(im), 4);
+niqe_wadaptgamma = round(niqe(y), 4);
+
 % piqe_orig_img = round(piqe(im), 4);
 % piqe_wadaptgamma = round(piqe(y), 4);
 

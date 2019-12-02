@@ -4,7 +4,7 @@ clear all;
 clc;
 % D = '../Dataset/Part A/';
 D = '../Dataset/Part B/';
-S = fullfile(pwd, D, 'IMG_1.png');
+S = fullfile(pwd, D, 'IMG_2.png');
 % S = fullfile(pwd, D, 'IMG_2.png');
 % S = fullfile(pwd, D, 'IMG_3.png');
 % S = fullfile(pwd, D, 'IMG_4.png');
@@ -36,10 +36,9 @@ figure, imshow(bbhe_im), title('BBHE Colored Image');
 brisque_orig_img = round(brisque(im), 4);
 brisque_bbhe = round(brisque(bbhe_im), 4);
 
-% 
-% niqe_orig_img = round(niqe(im), 4);
-% niqe_bbhe = round(niqe(bbhe_im), 4);
-% 
+niqe_orig_img = round(niqe(im), 4);
+niqe_bbhe = round(niqe(bbhe_im), 4);
+
 % piqe_orig_img = round(piqe(im), 4);
 % piqe_bbhe = round(piqe(bbhe_im), 4);
 

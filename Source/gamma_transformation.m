@@ -7,7 +7,7 @@ close all;
 
 % D = '../Dataset/Part A/';
 D = '../Dataset/Part B/';
-S = fullfile(pwd, D, 'IMG_1.png');
+S = fullfile(pwd, D, 'IMG_2.png');
 % S = fullfile(pwd, D, 'IMG_2.png');
 % S = fullfile(pwd, D, 'IMG_3.png');
 % S = fullfile(pwd, D, 'IMG_4.png');
@@ -41,10 +41,10 @@ figure; imshow(y), title('Gamma Transformed Image')
 
 brisque_orig_img = round(brisque(im), 4);
 brisque_gamma = round(brisque(y), 4);
-% 
-% niqe_orig_img = round(niqe(im), 4);
-% niqe_gamma = round(niqe(y), 4);
-% 
+
+niqe_orig_img = round(niqe(im), 4);
+niqe_gamma = round(niqe(y), 4);
+
 % piqe_orig_img = round(piqe(im), 4);
 % piqe_gamma = round(piqe(y), 4);
 

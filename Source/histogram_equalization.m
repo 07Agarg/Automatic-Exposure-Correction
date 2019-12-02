@@ -5,7 +5,7 @@ close all;
 
 % D = '../Dataset/Part A/';
 D = '../Dataset/Part B/';
-S = fullfile(pwd, D, 'IMG_1.png');
+S = fullfile(pwd, D, 'IMG_2.png');
 % S = fullfile(pwd, D, 'IMG_2.png');
 % S = fullfile(pwd, D, 'IMG_3.png');
 % S = fullfile(pwd, D, 'IMG_4.png');
@@ -29,16 +29,16 @@ hist_hsv = histeq(hsv_im(:, :, 3));
 
 hsv_im(:,:,3) = hist_hsv;
 hist_eq = hsv2rgb(hsv_im);
-figure; imshow(hist_eq), title('Corrected Image ');
-
-figure; imhist(im)
-figure; imhist(hist_eq)
-
-brisque_orig_img = brisque(im);
-brisque_histeq = brisque(hist_eq);
+figure; imshow(hist_eq), title('Histogram Equalised Image ');
 % 
-% niqe_orig_img = niqe(im);
-% niqe_histeq = niqe(hist_eq);
-% 
+% figure; imhist(im);
+% figure; imhist(hist_eq);
+
+brisque_orig_img = round(brisque(im), 4);
+brisque_histeq = round(brisque(hist_eq), 4);
+
+niqe_orig_img = round(niqe(im), 4);
+niqe_histeq = round(niqe(hist_eq), 4);
+
 % piqe_orig_img = piqe(im);
 % piqe_histeq = piqe(hist_eq);

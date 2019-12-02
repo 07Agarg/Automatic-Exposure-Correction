@@ -4,9 +4,9 @@
 clc;
 clear;
 close all;
-% D = '../Dataset/Part A/';
-D = '../Dataset/Part B/';
-S = fullfile(pwd, D, 'IMG_2.png');
+D = '../Dataset/Part A/';
+% D = '../Dataset/Part B/';
+S = fullfile(pwd, D, 'IMG_6.png');
 
 im = imread(S); % input image
 %HSV to RGB 
@@ -32,6 +32,13 @@ y =  hsv2rgb(hsv_x);
 % y = cat(3,uint8(yr),uint8(yg),uint8(yb));
 figure; imshow(im), title('Original Image');
 figure; imshow(y), title('Improved Gamma Correction Transformed Image');
+
+
+brisque_orig_img = round(brisque(im), 4);
+brisque_improvedgamma = round(brisque(y), 4);
+
+niqe_orig_img = round(niqe(im), 4);
+niqe_improvedgamma = round(niqe(y), 4);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 global T;
