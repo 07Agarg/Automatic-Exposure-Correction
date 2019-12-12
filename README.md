@@ -5,7 +5,7 @@ This repository contains the code for the following problem statement.
 Improving Images acquired through non-optimal exposure
 
 ### Dataset
-1. Part A: This part contains images captured with varying exposure settings, including one image taken in dim light.
+1. Part A: This part contains drone images captured with varying exposure settings, including one image taken in dim light.
 2. Part B: This part contains images of Kodak Dataset.
 
 ### Approaches
