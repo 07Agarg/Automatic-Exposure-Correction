@@ -10,13 +10,13 @@ Improving Images acquired through non-optimal exposure
 
 ### Approaches
 1. [Histogram Equalisation](https://github.com/07Agarg/Digital_Image_Processing_Project/blob/master/Source/histogram_equalization.m) 
-2. [Bi-Histogram based Histogram Equalisation](https://github.com/07Agarg/Digital_Image_Processing_Project/blob/master/Source/BBHE.m) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [*Paper*](https://pdfs.semanticscholar.org/fa46/ab775794339f15e8b84b8b4fe10fa3079ec7.pdf)
-3. [Contrast Limited Adaptive Histogram Equalisation](https://github.com/07Agarg/Digital_Image_Processing_Project/blob/master/Source/adaptive_histogram_equalisation.m) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [*Paper*](https://ieeexplore.ieee.org/document/580378)
-4. [Gamma Transformation](https://github.com/07Agarg/Digital_Image_Processing_Project/blob/master/Source/gamma_transformation.m) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [*Paper*](https://arxiv.org/ftp/arxiv/papers/1709/1709.04427.pdf)
-5. [Adaptive Gamma Transformation](https://github.com/07Agarg/Digital_Image_Processing_Project/blob/master/Source/adaptive_gamma_transform.m) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [*Paper*](https://arxiv.org/ftp/arxiv/papers/1709/1709.04427.pdf)
-6. [Weighted Adaptive Gamma Transformation](https://github.com/07Agarg/Digital_Image_Processing_Project/blob/master/Source/weighted_adaptive_gamma_transform.m) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [*Paper*](https://ieeexplore.ieee.org/document/6336819)
-7. [Improved Adaptive Gamma Transformation](https://github.com/07Agarg/Digital_Image_Processing_Project/blob/master/Source/improved_adaptive_gamma_correction.m) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [*Paper*](https://arxiv.org/abs/1709.04427)
-8. [Adaptive non-linear Stretching](https://github.com/07Agarg/Digital_Image_Processing_Project/blob/master/Source/adaptive_nonlinear_stretching.m) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [*Paper*](https://ieeexplore.ieee.org/document/8365712)
+2. [Bi-Histogram based Histogram Equalisation](https://github.com/07Agarg/Digital_Image_Processing_Project/blob/master/Source/BBHE.m) [*[Paper]*](https://pdfs.semanticscholar.org/fa46/ab775794339f15e8b84b8b4fe10fa3079ec7.pdf)
+3. [Contrast Limited Adaptive Histogram Equalisation](https://github.com/07Agarg/Digital_Image_Processing_Project/blob/master/Source/adaptive_histogram_equalisation.m) [*[Paper]*](https://ieeexplore.ieee.org/document/580378)
+4. [Gamma Transformation](https://github.com/07Agarg/Digital_Image_Processing_Project/blob/master/Source/gamma_transformation.m) [*[Paper]*](https://arxiv.org/ftp/arxiv/papers/1709/1709.04427.pdf)
+5. [Adaptive Gamma Transformation](https://github.com/07Agarg/Digital_Image_Processing_Project/blob/master/Source/adaptive_gamma_transform.m) [*[Paper]*](https://arxiv.org/ftp/arxiv/papers/1709/1709.04427.pdf)
+6. [Weighted Adaptive Gamma Transformation](https://github.com/07Agarg/Digital_Image_Processing_Project/blob/master/Source/weighted_adaptive_gamma_transform.m) [*[Paper]*](https://ieeexplore.ieee.org/document/6336819)
+7. [Improved Adaptive Gamma Transformation](https://github.com/07Agarg/Digital_Image_Processing_Project/blob/master/Source/improved_adaptive_gamma_correction.m) [*[Paper]*](https://arxiv.org/abs/1709.04427)
+8. [Adaptive non-linear Stretching](https://github.com/07Agarg/Digital_Image_Processing_Project/blob/master/Source/adaptive_nonlinear_stretching.m) [*[Paper]*](https://ieeexplore.ieee.org/document/8365712)
 
 ### Quality Measures
 1. Brisque
