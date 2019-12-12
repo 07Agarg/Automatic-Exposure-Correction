@@ -4,9 +4,9 @@
 clc;
 clear;
 close all;
-D = '../Dataset/Part A/';
-% D = '../Dataset/Part B/';
-S = fullfile(pwd, D, 'IMG_6.png');
+% D = '../Dataset/Part A/';
+D = '../Dataset/Part B/';
+S = fullfile(pwd, D, 'IMG_11.png');
 
 im = imread(S); % input image
 %HSV to RGB 

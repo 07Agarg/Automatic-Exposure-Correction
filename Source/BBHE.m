@@ -2,9 +2,9 @@
 close all;
 clear all;
 clc;
-% D = '../Dataset/Part A/';
-D = '../Dataset/Part B/';
-S = fullfile(pwd, D, 'IMG_2.png');
+D = '../Dataset/Part A/';
+% D = '../Dataset/Part B/';
+S = fullfile(pwd, D, 'IMG_5.png');
 % S = fullfile(pwd, D, 'IMG_2.png');
 % S = fullfile(pwd, D, 'IMG_3.png');
 % S = fullfile(pwd, D, 'IMG_4.png');

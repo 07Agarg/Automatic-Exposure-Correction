@@ -5,9 +5,9 @@ clc;
 clear all;
 close all;
 
-% D = '../Dataset/Part A/';
-D = '../Dataset/Part B/';
-S = fullfile(pwd, D, 'IMG_1.png');
+D = '../Dataset/Part A/';
+% D = '../Dataset/Part B/';
+S = fullfile(pwd, D, 'IMG_5.png');
 % S = fullfile(pwd, D, 'IMG_2.png');
 % S = fullfile(pwd, D, 'IMG_3.png');
 % S = fullfile(pwd, D, 'IMG_4.png');
@@ -20,8 +20,8 @@ S = fullfile(pwd, D, 'IMG_1.png');
 im = imread(S);
 LAB = rgb2lab(im);
 L = LAB(:,:,1)/100;
-% L = adapthisteq(L,'NumTiles',[720 50],'ClipLimit',0.005);       %%%Part A
-L = adapthisteq(L,'NumTiles',[8 8],'ClipLimit',0.005)   ;          %%% Part B
+L = adapthisteq(L,'NumTiles',[720 50],'ClipLimit',0.005);       %%%Part A
+% L = adapthisteq(L,'NumTiles',[8 8],'ClipLimit',0.005)   ;          %%% Part B
 LAB(:,:,1) = L*100;
 J = lab2rgb(LAB);
 % figure;imshow(J_720)
@@ -34,7 +34,7 @@ J = lab2rgb(LAB);
 % J_250 = lab2rgb(LAB);
 
 figure; imshow(im), title('Original Image')
-figure;imshow(J), title('Original Image')
+figure;imshow(J), title('Adaptive Histogram Equalised Image')
 
 % imshowpair(im,J,'montage')
 % title('Contrast Enhanced Image-(250 50)')
