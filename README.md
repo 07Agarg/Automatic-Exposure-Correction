@@ -1,4 +1,4 @@
-# Digital_Image_Processing_Project
+# Automatic-Exposure-Correction
 This repository contains the code for the following problem statement. 
 
 ### Problem Statement
